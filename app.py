@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify, redirect, url_for
 from flask_cors import CORS
 import mysql.connector
+import os
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
@@ -264,6 +265,6 @@ def delete_messages():
         print(f"Error deleting messages: {e}")
         return jsonify({'success': False, 'message': 'Error deleting messages'})
 
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+if __name__ == "__main__":
+    port = int(os.getenv("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
